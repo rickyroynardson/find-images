@@ -7,7 +7,7 @@ function App() {
     const [images, setImages] = useState([]);
 
     useEffect(() => {
-        fetch(`https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}&per_page=50`)
+        fetch(`https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}&per_page=30`)
             .then((res) => res.json())
             .then((data) => {
                 setImages(data.hits);

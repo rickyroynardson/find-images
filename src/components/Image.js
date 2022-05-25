@@ -4,7 +4,7 @@ const Image = ({ image }) => {
     return (
         <a href={image.largeImageURL} target="_blank" rel="noopener noreferrer">
             <div className="relative break-inside-avoid rounded-xl overflow-hidden group mb-2">
-                <img src={image.webformatURL} alt={image.pageURL} className="w-full" />
+                <img src={image.webformatURL} alt={image.pageURL} className="w-full h-auto" width={100} height={100} />
                 <div className="absolute top-0 m-2 px-2 py-1 bg-white rounded-full">
                     <p className="text-xs text-gray-600 font-semibold truncate">
                         Photo by <span className="text-gray-800">{image.user}</span>

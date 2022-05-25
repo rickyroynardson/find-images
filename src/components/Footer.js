@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="flex items-center justify-center gap-1">
                 <p className="text-gray-700 font-semibold">with</p>
                 <a href="https://pixabay.com" target="_blank" rel="noopener noreferrer">
-                    <img alt="Pixabay API" className="h-4" src="assets/pixabay.webp" />
+                    <img alt="Pixabay API" className="h-4 w-auto" src="assets/pixabay.webp" width={100} height={100} />
                 </a>
             </div>
         </footer>
