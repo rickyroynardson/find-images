@@ -7,18 +7,18 @@ function App() {
     const [images, setImages] = useState([]);
 
     useEffect(() => {
-        fetch(`https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}`)
+        fetch(`https://pixabay.com/api/?key=${process.env.REACT_APP_PIXABAY_API_KEY}&per_page=50`)
             .then((res) => res.json())
             .then((data) => {
                 setImages(data.hits);
             })
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err));
     }, []);
 
     return (
         <div className="bg-gray-200 min-h-screen p-5">
             <Header />
-            <div className="py-2 gap-3 space-y-2 columns-2 md:columns-3 lg:columns-4 xl:columns-5">
+            <div className="py-2 gap-2 columns-2 md:columns-3 lg:columns-4 xl:columns-5">
                 {images.map((image) => (
                     <Image key={image.id} image={image} />
                 ))}
