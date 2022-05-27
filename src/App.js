@@ -8,6 +8,7 @@ function App() {
     const [count, setCount] = useState(16);
     const [search, setSearch] = useState("");
     const [theme, setTheme] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         document.querySelector("html").classList.add(localStorage.getItem("theme"));
@@ -16,6 +17,7 @@ function App() {
             .then((res) => res.json())
             .then((data) => {
                 setImages(data.hits);
+                setIsLoading(false);
             })
             .catch((err) => console.log(err));
     }, [count, search]);
@@ -50,19 +52,29 @@ function App() {
                 )}
             </div>
             <Header search={(text) => setSearch(text)} />
-            <div className="p-2 gap-2 columns-2 md:columns-3 lg:columns-4 xl:columns-5">
-                {images.map((image) => (
-                    <Image key={image.id} image={image} />
-                ))}
-            </div>
-            <div className="text-center my-5 space-y-1">
-                <p className="text-gray-700 font-semibold dark:text-gray-200">
-                    Showing <span className="text-blue-700 dark:text-teal-400">{count}</span> of <span className="text-blue-700 dark:text-teal-400">200</span>
-                </p>
-                <button onClick={loadMore} className="bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full hover:scale-105 dark:bg-teal-600">
-                    Load more...
-                </button>
-            </div>
+            {isLoading ? (
+                <h1 className="text-center font-semibold text-2xl py-10 text-gray-700 dark:text-gray-200">Loading...</h1>
+            ) : (
+                images.length === 0 ? (
+                    <h1 className="text-center font-semibold text-2xl py-10 text-gray-700 dark:text-gray-200">No image found...</h1>
+                ) : (
+                    <div className="p-2 gap-2 columns-2 md:columns-3 lg:columns-4 xl:columns-5">
+                        {images.map((image) => (
+                            <Image key={image.id} image={image} />
+                        ))}
+                    </div>
+                )
+            )}
+            {images.length > 0 && (
+                <div className="text-center my-5 space-y-1">
+                    <p className="text-gray-700 font-semibold dark:text-gray-200">
+                        Showing <span className="text-blue-700 dark:text-teal-400">{count}</span> of <span className="text-blue-700 dark:text-teal-400">200</span>
+                    </p>
+                    <button onClick={loadMore} className="bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full hover:scale-105 dark:bg-teal-600">
+                        Load more...
+                    </button>
+                </div>
+            )}
             <Footer />
         </div>
     );
