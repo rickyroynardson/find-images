@@ -58,7 +58,7 @@ function App() {
                 images.length === 0 ? (
                     <h1 className="text-center font-semibold text-2xl py-10 text-gray-700 dark:text-gray-200">No image found...</h1>
                 ) : (
-                    <div className="p-2 gap-2 columns-2 md:columns-3 lg:columns-4 xl:columns-5">
+                    <div className="p-2 gap-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                         {images.map((image) => (
                             <Image key={image.id} image={image} />
                         ))}

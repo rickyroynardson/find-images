@@ -3,8 +3,8 @@ import React from "react";
 const Image = ({ image }) => {
     return (
         <a href={image.largeImageURL} target="_blank" rel="noopener noreferrer">
-            <div className="relative break-inside-avoid rounded-xl overflow-hidden group mb-2">
-                <img src={image.webformatURL} alt={image.pageURL} className="w-full h-auto" width={100} height={100} />
+            <div className="relative break-inside-avoid rounded-xl overflow-hidden group h-44">
+                <img src={image.webformatURL} alt={image.pageURL} className="w-full h-full object-cover" width={100} height={100} />
                 <div className="absolute top-0 m-1 px-2 bg-white rounded-full md:m-2 md:py-1">
                     <p className="text-xs text-gray-600 font-semibold truncate">
                         Photo by <span className="text-gray-800">{image.user}</span>
